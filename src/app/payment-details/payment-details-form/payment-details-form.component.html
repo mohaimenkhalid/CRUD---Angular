@@ -1,8 +1,8 @@
-<form #paymentDetailsForm="ngForm" novalidate>
-  <input type="hidden" name="id" [value]="service.formData.id" />
+<form #paymentDetailsForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+  <input type="hidden" name="id" [value]="formData.id" />
   <div class="form-group">
     <label>Card Owner Name</label>
-    <input class="form-control" type="text" name="name" [value]="service.formData.name" placeholder="Enter card owner name"  #name="ngModel" [(ngModel)]="service.formData.name" required
+    <input class="form-control" type="text" name="name" [value]="formData.name" placeholder="Enter card owner name"  #name="ngModel" [(ngModel)]="formData.name" required
            [class.is-invalid] = "name.invalid && name.touched"
     />
     <small class="text-danger"
@@ -11,8 +11,7 @@
 
   <div class="form-group">
     <label>Card Number</label>
-    {{ card_number.errors |json}}
-    <input class="form-control" type="text" name="card_number" [value]="service.formData.card_number" placeholder="Enter card number"  #card_number="ngModel" [(ngModel)]="service.formData.card_number" required maxlength="16" minlength="16"
+    <input class="form-control" type="text" name="card_number" [value]="formData.card_number" placeholder="Enter card number"  #card_number="ngModel" [(ngModel)]="formData.card_number" required maxlength="16" minlength="16"
            [class.is-invalid] = "card_number.invalid && card_number.touched"
     />
 
@@ -25,7 +24,7 @@
   <div class="row">
     <div class="form-group col-md-6">
       <label>Card Expire Date</label>
-      <input class="form-control" type="text" name="expire_date" [value]="service.formData.expire_date" placeholder="Enter card owner name"  #expire_date="ngModel" [(ngModel)]="service.formData.expire_date" required maxlength="5" minlength="5"
+      <input class="form-control" type="text" name="expire_date" [value]="formData.expire_date" placeholder="Enter card owner name"  #expire_date="ngModel" [(ngModel)]="formData.expire_date" required maxlength="5" minlength="5"
           [class.is-invalid] = "expire_date.touched && expire_date.invalid"
       />
       <div *ngIf="expire_date.errors && (expire_date.invalid)">
@@ -35,7 +34,7 @@
 
     <div class="form-group col-md-6">
       <label>Security Code</label>
-      <input class="form-control" type="text" name="security_code" [value]="service.formData.security_code" placeholder="Enter card owner name"  #security_code="ngModel" [(ngModel)]="service.formData.security_code" required maxlength="3" minlength="3"
+      <input class="form-control" type="text" name="security_code" [value]="formData.security_code" placeholder="Enter card owner name"  #security_code="ngModel" [(ngModel)]="formData.security_code" required maxlength="3" minlength="3"
           [class.is-invalid] = "security_code.invalid && security_code.touched"
       />
       <div *ngIf="security_code.errors && (security_code.invalid)">
