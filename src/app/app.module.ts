@@ -4,17 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
-import { PaymentDetsilsFormComponent } from './payment-details/payment-detsils-form/payment-detsils-form.component';
+import { PaymentDetailsFormComponent } from './payment-details/payment-details-form/payment-details-form.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     PaymentDetailsComponent,
-    PaymentDetsilsFormComponent
+    PaymentDetailsFormComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

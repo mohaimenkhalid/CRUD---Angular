@@ -1,0 +1,52 @@
+<form #paymentDetailsForm="ngForm" novalidate>
+  <input type="hidden" name="id" [value]="service.formData.id" />
+  <div class="form-group">
+    <label>Card Owner Name</label>
+    <input class="form-control" type="text" name="name" [value]="service.formData.name" placeholder="Enter card owner name"  #name="ngModel" [(ngModel)]="service.formData.name" required
+           [class.is-invalid] = "name.invalid && name.touched"
+    />
+    <small class="text-danger"
+           [class.d-none] = "name.valid || name.untouched">Card Owner Name is required.</small>
+  </div>
+
+  <div class="form-group">
+    <label>Card Number</label>
+    {{ card_number.errors |json}}
+    <input class="form-control" type="text" name="card_number" [value]="service.formData.card_number" placeholder="Enter card number"  #card_number="ngModel" [(ngModel)]="service.formData.card_number" required maxlength="16" minlength="16"
+           [class.is-invalid] = "card_number.invalid && card_number.touched"
+    />
+
+    <div *ngIf="card_number.errors && (card_number.invalid)">
+      <small class="text-danger" *ngIf="card_number.errors.required && card_number.touched">Card number is required.</small>
+      <small class="text-danger" *ngIf="card_number.errors.minlength">Card number must be 16 digit.</small>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Card Expire Date</label>
+      <input class="form-control" type="text" name="expire_date" [value]="service.formData.expire_date" placeholder="Enter card owner name"  #expire_date="ngModel" [(ngModel)]="service.formData.expire_date" required maxlength="5" minlength="5"
+          [class.is-invalid] = "expire_date.touched && expire_date.invalid"
+      />
+      <div *ngIf="expire_date.errors && (expire_date.invalid)">
+        <small class="text-danger" *ngIf="expire_date.errors.required && expire_date.touched">Expire Date is required.</small>
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label>Security Code</label>
+      <input class="form-control" type="text" name="security_code" [value]="service.formData.security_code" placeholder="Enter card owner name"  #security_code="ngModel" [(ngModel)]="service.formData.security_code" required maxlength="3" minlength="3"
+          [class.is-invalid] = "security_code.invalid && security_code.touched"
+      />
+      <div *ngIf="security_code.errors && (security_code.invalid)">
+        <small class="text-danger" *ngIf="security_code.errors.required && security_code.touched">Security code is required.</small>
+        <small class="text-danger" *ngIf="security_code.errors.minlength">Security code must be 3 digit.</small>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-info btn-block btn-lg" type="submit" [disabled]="paymentDetailsForm.form.invalid">Submit</button>
+  </div>
+</form>
