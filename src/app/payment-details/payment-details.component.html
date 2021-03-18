@@ -10,5 +10,21 @@
   </div>
   <div class="col-md-6">
       <span>List of payment details</span>
+      <table class="table table-bordered">
+          <tr>
+            <th>Name</th>
+            <th>Card Number</th>
+            <th>Expire</th>
+            <th>Action</th>
+          </tr>
+        <tr *ngFor="let details of service.paymentDetails">
+          <td>{{ details.name }}</td>
+          <td>{{ details.card_number }}</td>
+          <td>{{ details.expire_date }}</td>
+          <td>
+            <button (click)="onDelelete(details.id)"><i class="fa fa-trash text-danger"></i></button>
+          </td>
+        </tr>
+      </table>
   </div>
 </div>

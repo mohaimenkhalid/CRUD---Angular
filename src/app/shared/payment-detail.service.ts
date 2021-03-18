@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { PaymentDetail } from './payment-detail.model';
 import { HttpClient } from '@angular/common/http';
+import { Observable, throwError} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentDetailService {
-
+  public paymentDetails: PaymentDetail[];
   constructor(private http: HttpClient) { }
   readonly baseUrl: string = 'http://localhost:8000/api/paymentDetails';
 
@@ -14,10 +15,16 @@ export class PaymentDetailService {
     return this.http.post<PaymentDetail>(this.baseUrl, paymentDetail);
   }
 
-  /*enroll(user: User) {
-    return this.http.post<any>(this._URL, user).pipe(
-      catchError(this.errorHandler)
+  getPaymentDetails() {
+    return this.http.get<PaymentDetail[]>(this.baseUrl)
+      .subscribe(
+      (data: PaymentDetail[]) => this.paymentDetails = data
     );
-  }*/
+  }
 
+
+
+  deletePaymentDetail(id: number) {
+    return this.http.delete(this.baseUrl + '/' + id);
+  }
 }

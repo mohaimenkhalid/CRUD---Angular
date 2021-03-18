@@ -1,4 +1,4 @@
-<form #paymentDetailsForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+<form #paymentDetailsForm="ngForm" novalidate (ngSubmit)="onSubmit(paymentDetailsForm)">
   <input type="hidden" name="id" [value]="formData.id" />
   <div class="form-group">
     <label>Card Owner Name</label>
