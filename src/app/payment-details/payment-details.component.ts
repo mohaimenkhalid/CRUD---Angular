@@ -30,4 +30,8 @@ export class PaymentDetailsComponent implements OnInit {
       );
   }
 
+  editForm(paymentDetail) {
+
+  }
+
 }
